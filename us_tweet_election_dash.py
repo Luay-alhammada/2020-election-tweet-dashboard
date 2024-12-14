@@ -218,7 +218,6 @@ with col3:
 # 33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
 
 # transition_matrix_percentage = pd.read_csv(r'C:\Tweeter project\Election dataset\transition_matrix_percentage.csv')
-uniq_user = user.groupby('user_screen_name')['sentiment_change'].first().reset_index()
 user_cleaned = user.dropna(subset=['before_23_oct_sentiment', 'after_23_oct_sentiment'])
 user_cleaned = user_cleaned.drop_duplicates(subset=['user_screen_name'])
 

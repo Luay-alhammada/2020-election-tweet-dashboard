@@ -19,15 +19,18 @@ st.set_page_config(
 #111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 # Load data
 
+import pandas as pd
+import streamlit as st
+
 @st.cache_data
-def load_data(file_path):
-    return pd.read_csv(file_path)
+def load_data(url):
+    return pd.read_csv(url)
 
+# Use raw URLs from GitHub
+merged_df = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/usa_tweet.csv')
+sentiment_distribution = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/sentiment_distribution.csv')
+user = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/usa_user.csv')
 
-
-merged_df = load_data(r'C:\Tweeter project\Election dataset\usa_tweet.csv')
-sentiment_distribution = load_data(r'C:\Tweeter project\Election dataset\sentiment_distribution.csv')
-user = load_data(r'C:\Tweeter project\Election dataset\usa_user.csv')
 
 
 # Calculate metrics

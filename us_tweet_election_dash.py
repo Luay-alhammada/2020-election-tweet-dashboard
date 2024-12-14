@@ -219,7 +219,6 @@ with col3:
 
 # transition_matrix_percentage = pd.read_csv(r'C:\Tweeter project\Election dataset\transition_matrix_percentage.csv')
 user_cleaned = user.dropna(subset=['before_23_oct_sentiment', 'after_23_oct_sentiment'])
-user_cleaned = user_cleaned.drop_duplicates(subset=['user_screen_name'])
 
 # Add a filter for candidates
 candidates_options = user_cleaned['candidates'].unique()

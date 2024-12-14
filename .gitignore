@@ -1,5 +1,3 @@
-*.csv           # Ignore all CSV files
-*.log           # Ignore all log files
-__pycache__/    # Ignore Python cache directories
-*.env           # Ignore environment files
-.vscode/        # Ignore VSC settings
+*.csv
+__pycache__/
+*.env

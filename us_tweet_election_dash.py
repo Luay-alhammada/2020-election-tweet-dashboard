@@ -18,11 +18,19 @@ st.set_page_config(
 
 #111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 # Load data
+
+@st.cache_data
+def load_data(file_path):
+    return pd.read_csv(file_path)
+
+
+
+merged_df = load_data(r'C:\Tweeter project\Election dataset\usa_tweet.csv')
+sentiment_distribution = load_data(r'C:\Tweeter project\Election dataset\sentiment_distribution.csv')
+user = load_data(r'C:\Tweeter project\Election dataset\usa_user.csv')
+
+
 # Calculate metrics
-
-
-merged_df = pd.read_csv(r'C:\Tweeter project\Election dataset\usa_tweet.csv')
-
 # Sidebar for date selection
 st.header("US Map Configuration")
 
@@ -108,7 +116,6 @@ with col2:  # Place the map in the middle column
 
 #2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
 # Load data
-sentiment_distribution = pd.read_csv(r'C:\Tweeter project\Election dataset\sentiment_distribution.csv')
 
 # Sidebar: Candidate Selection
 # Multi-select for candidates
@@ -207,7 +214,6 @@ with col3:
 
 # 33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
 
-user = pd.read_csv(r'C:\Tweeter project\Election dataset\usa_user.csv')
 # transition_matrix_percentage = pd.read_csv(r'C:\Tweeter project\Election dataset\transition_matrix_percentage.csv')
 uniq_user = user.groupby('user_screen_name')['sentiment_change'].first().reset_index()
 user_cleaned = user.dropna(subset=['before_23_oct_sentiment', 'after_23_oct_sentiment'])

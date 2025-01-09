@@ -29,11 +29,6 @@ sentiment_distribution = load_data('https://raw.githubusercontent.com/Luay-alham
 user = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/usa_user.csv')
 
 
-
-# Calculate metrics
-# Sidebar for date selection
-st.header("US Map Configuration")
-
 col1, col2 = st.columns([1, 6]) 
 # Add "All Days" to the unique dates list
 

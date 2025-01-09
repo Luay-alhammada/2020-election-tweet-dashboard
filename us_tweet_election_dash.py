@@ -19,9 +19,6 @@ st.set_page_config(
 #111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
 # Load data
 
-import pandas as pd
-import streamlit as st
-
 @st.cache_data
 def load_data(url):
     return pd.read_csv(url)
@@ -39,11 +36,14 @@ st.header("US Map Configuration")
 
 col1, col2 = st.columns([1, 6]) 
 # Add "All Days" to the unique dates list
-date_options = ["All Days"] + list(merged_df['date'].unique())
+
 
 with col1:
+  st.header("US Map Configuration")
 # Dropdown for date selection outside the sidebar
+  date_options = ["All Days"] + list(merged_df['date'].unique())
   selected_date = st.selectbox("Select Date", date_options)
+  input_color = st.selectbox("Select Metrics ", ['tweet_count', 'total_likes', 'sentiment_avg', 'total_retweets', 'total_followers'])
 
 # Filter the data based on the selected date
 if selected_date == "All Days":
@@ -60,9 +60,6 @@ if selected_date == "All Days":
 else:
     filtered_data = merged_df[merged_df['date'] == selected_date]
 
-# Sidebar for color selection
-with col1:
- input_color = st.selectbox("Select Metrics ", ['tweet_count', 'total_likes', 'sentiment_avg', 'total_retweets', 'total_followers'])
 
 # Set color scale
 color_scale = "RdBu" if input_color == 'sentiment_avg' else "Blues"
@@ -110,11 +107,9 @@ def make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_d
     return fig
 
 # Display the map
-fig = make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_date)
 
-# Use Streamlit's columns to center the map
-col1, col2, col3 = st.columns([1, 3, 1])  # Adjust column widths as needed
-with col2:  # Place the map in the middle column
+with col2:
+    fig = make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_date)
     st.plotly_chart(fig, use_container_width=True)
 
 #2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222

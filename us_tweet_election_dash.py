@@ -31,13 +31,13 @@ data_info = pd.read_csv('https://raw.githubusercontent.com/Luay-alhammada/2020-e
 # Center-align the title using HTML
 title = "<h1 style='text-align:center;'>US Election 2020 Biden VS Trump</h1>"
 
-# title
-st.markdown('<h1 style="color: IndianRed;">Map Configuration</h1>', unsafe_allow_html=True)
+
+
 
 col1, col2,col3 = st.columns([1.5, 5, 2]) 
 #  unique dates list
 with col1:
-  st.header("Map Configuration")
+  st.markdown('<h1 style="color: IndianRed;">Map Configuration</h1>', unsafe_allow_html=True)
 # Dropdown for date selection outside the sidebar
   date_options = ["All Days"] + list(merged_df['date'].unique())
   selected_date = st.selectbox("Select Date", date_options)

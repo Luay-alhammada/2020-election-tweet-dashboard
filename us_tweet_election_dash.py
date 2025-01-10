@@ -29,7 +29,10 @@ user = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election
 data_info = pd.read_csv('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/Data%20Info.csv')
 
 # Center-align the title using HTML
-title = "<h1 style='text-align:center;'>US Election 2020 Biden VS Trump</h1>"
+title = "<h1 style='text-align:center;'>tweets US Election 2020 </h1>"
+
+# Display the title in Streamlit
+st.markdown(title, unsafe_allow_html=True)
 
 
 

@@ -17,7 +17,6 @@ st.set_page_config(
 )
 
 #111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-# Load data
 
 @st.cache_data
 def load_data(url):
@@ -32,17 +31,11 @@ data_info = pd.read_csv('https://raw.githubusercontent.com/Luay-alhammada/2020-e
 # Center-align the title using HTML
 title = "<h1 style='text-align:center;'>US Election 2020 Biden VS Trump</h1>"
 
-# Display the title in Streamlit
+# title
 st.markdown(title, unsafe_allow_html=True)
 
-# Calculate metrics
-# Sidebar for date selection
-
-
-col1, col2,col3 = st.columns([1, 5,2]) 
-# Add "All Days" to the unique dates list
-
-
+col1, col2,col3 = st.columns([2, 5, 2]) 
+#  unique dates list
 with col1:
   st.header("Map Configuration")
 # Dropdown for date selection outside the sidebar
@@ -58,13 +51,12 @@ if selected_date == "All Days":
         'sentiment_avg': 'mean',  # Average sentiment
         'total_retweets': 'sum',
         'total_followers':'sum',
-        'state': 'first',  # Take the first state name (static for each state code)
+        'state': 'first',  # first state name 
         'most_common_issues': lambda x: x.mode()[0] if not x.mode().empty else None,  # Most common issue
         'top_hashtags': lambda x: x.mode()[0] if not x.mode().empty else None,  # Most liked hashtag
     }).reset_index()
 else:
     filtered_data = merged_df[merged_df['date'] == selected_date]
-
 
 # Set color scale
 color_scale = "RdBu" if input_color == 'sentiment_avg' else "Blues"
@@ -126,7 +118,6 @@ with col3:
     st.markdown(html_table, unsafe_allow_html=True)
 
 #2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
-# Sidebar: Candidate Selection
 # Multi-select for candidates
 st.markdown("### Select Candidates")
 
@@ -216,9 +207,7 @@ with col3:
 
 # 33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
 
-# transition_matrix_percentage = pd.read_csv(r'C:\Tweeter project\Election dataset\transition_matrix_percentage.csv')
 user_cleaned = user.dropna(subset=['before_23_oct_sentiment', 'after_23_oct_sentiment'])
-
 
 # Add a filter for candidates
 candidates_options = user_cleaned['candidates'].unique()
@@ -228,8 +217,7 @@ selected_candidates = st.radio(
     index=0
 )
 
-
-# Filter the data based on the selected candidates
+# Filter selected candidates
 filtered_data = user_cleaned[user_cleaned['candidates'] == selected_candidates]
 
 # Update your transition matrix and other visualizations based on the filtered data
@@ -243,10 +231,7 @@ transition_matrix_filtered = pd.crosstab(
 # Normalize by row to get percentages for the filtered data
 transition_matrix_percentage_filtered = transition_matrix_filtered.div(transition_matrix_filtered.sum(axis=1), axis=0) * 100
 
-
 col1, col2,col3 = st.columns([4, 1,1])
-
-
 
 with col1:
     st.markdown('<div><h4>Users Sentiment Transitions Before & After Debate Day</h4></div>', unsafe_allow_html=True)

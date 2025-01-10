@@ -34,7 +34,7 @@ title = "<h1 style='text-align:center;'>US Election 2020 Biden VS Trump</h1>"
 # title
 st.markdown(title, unsafe_allow_html=True)
 
-col1, col2,col3 = st.columns([2, 5, 2]) 
+col1, col2,col3 = st.columns([1.5, 5, 2]) 
 #  unique dates list
 with col1:
   st.header("Map Configuration")

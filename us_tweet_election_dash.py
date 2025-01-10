@@ -37,7 +37,7 @@ title = "<h1 style='text-align:center;'>US Election 2020 Biden VS Trump</h1>"
 col1, col2,col3 = st.columns([1.5, 5, 2]) 
 #  unique dates list
 with col1:
-  st.markdown('<h1 style="color: IndianRed;font-size: 40px;">Map Configuration</h1>', unsafe_allow_html=True)
+  st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Map Configuration</h1>', unsafe_allow_html=True)
 # Dropdown for date selection outside the sidebar
   date_options = ["All Days"] + list(merged_df['date'].unique())
   selected_date = st.selectbox("Select Date", date_options)
@@ -117,8 +117,7 @@ with col3:
 
 #2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
 # Multi-select for candidates
-# st.markdown("### Select Candidates")
-st.markdown('<h1 style="color: IndianRed;font-size: 40px;">Select Candidates</h1>', unsafe_allow_html=True)
+st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Select Candidates</h1>', unsafe_allow_html=True)
 selected_candidates = []
 for candidate in sentiment_distribution['candidates'].unique():
     if st.checkbox(candidate):

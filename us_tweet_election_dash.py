@@ -117,8 +117,8 @@ with col3:
 
 #2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
 # Multi-select for candidates
-st.markdown("### Select Candidates")
-
+# st.markdown("### Select Candidates")
+st.markdown('<h1 style="color: IndianRed;font-size: 40px;">Select Candidates</h1>', unsafe_allow_html=True)
 selected_candidates = []
 for candidate in sentiment_distribution['candidates'].unique():
     if st.checkbox(candidate):

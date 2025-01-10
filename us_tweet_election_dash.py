@@ -34,7 +34,7 @@ title = "<h1 style='text-align:center;'>US Election 2020 Biden VS Trump</h1>"
 
 
 
-col1, col2,col3 = st.columns([1.5, 5, 2]) 
+col1, col2,col3 = st.columns([1.5, 1.5]) 
 #  unique dates list
 with col1:
   st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Map Configuration</h1>', unsafe_allow_html=True)
@@ -90,10 +90,10 @@ def make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_d
         projection=go.layout.geo.Projection(type='albers usa')
     )
     # Update the title dynamically
-    title_suffix = "All Days" if selected_date == "All Days" else f"on {selected_date}"
+    # title_suffix = "All Days" if selected_date == "All Days" else f"on {selected_date}"
     fig.update_layout(
-        title_text=f"USA Map for {input_color.replace('_', ' ').title()} {title_suffix}",
-        title_x=0.3,
+        # title_text=f"USA Map for {input_color.replace('_', ' ').title()} {title_suffix}",
+        # title_x=0.3,
         
         geo_scope='usa',
         width=800,

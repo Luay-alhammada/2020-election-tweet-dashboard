@@ -27,7 +27,7 @@ def load_data(url):
 merged_df = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/usa_tweet.csv')
 sentiment_distribution = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/sentiment_distribution.csv')
 user = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/usa_user.csv')
-
+data_info = load_data('https://github.com/Luay-alhammada/2020-election-tweet-dashboard/blob/main/Data%20Info.csv')
 
 col1, col2 = st.columns([1, 6]) 
 # Add "All Days" to the unique dates list

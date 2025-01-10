@@ -219,6 +219,7 @@ with col3:
 # transition_matrix_percentage = pd.read_csv(r'C:\Tweeter project\Election dataset\transition_matrix_percentage.csv')
 user_cleaned = user.dropna(subset=['before_23_oct_sentiment', 'after_23_oct_sentiment'])
 
+
 # Add a filter for candidates
 candidates_options = user_cleaned['candidates'].unique()
 selected_candidates = st.radio(
@@ -242,21 +243,13 @@ transition_matrix_filtered = pd.crosstab(
 # Normalize by row to get percentages for the filtered data
 transition_matrix_percentage_filtered = transition_matrix_filtered.div(transition_matrix_filtered.sum(axis=1), axis=0) * 100
 
-# Calculate totals and percentages for the filtered data
-total_users_filtered = transition_matrix_filtered.values.sum()
-no_change_count_filtered = transition_matrix_filtered.values.diagonal().sum()
-change_count_filtered = total_users_filtered - no_change_count_filtered
-percentage_no_change_filtered = (no_change_count_filtered / total_users_filtered) * 100
-percentage_change_filtered = (change_count_filtered / total_users_filtered) * 100
 
-#--------------------------------------------------------------------------------------------------
-
-col1, col2,col3,col4 = st.columns([1,3, 1,1])
+col1, col2,col3 = st.columns([4, 1,1])
 
 
 
-with col2:
-    st.markdown('<div><h3>Sentiment Transitions Before & After Debate Day</h3></div>', unsafe_allow_html=True)
+with col1:
+    st.markdown('<div><h4>Users Sentiment Transitions Before & After Debate Day</h4></div>', unsafe_allow_html=True)
     
     # Prepare data for the Sankey diagram with the filtered data
     source = [
@@ -282,11 +275,12 @@ with col2:
         node=dict(
             pad=15,
             thickness=20,
-            line=dict(color="black", width=0.5),
             label=labels,
-            color=['crimson', 'snow', 'darkgreen'] * 2  # Colors for before and after
+            color=['crimson', 'snow', 'darkgreen'] * 2,  # Colors for before and after
+            
         ),
         link=dict(
+            
             source=source,
             target=target,
             value=values,
@@ -295,33 +289,10 @@ with col2:
     )])
     
     fig.update_layout(
+        
         width=800,  # Set the width of the Sankey diagram (adjust as needed)
         height=500  # Set the height of the Sankey diagram (adjust as needed)
     )
 
-    st.plotly_chart(fig)
-
-# Display content in column 3 (Pie chart)
-with col3:
-    st.markdown('<div><h3>Sentiment Status </h3></div>', unsafe_allow_html=True)
-    
-    labels = ['No Change', 'Change']
-    sizes = [percentage_no_change_filtered, percentage_change_filtered]
-    colors = ['lightblue', 'lightcoral']  # Choose your colors
-
-    # Create the Plotly Pie chart
-    fig = go.Figure(data=[go.Pie(
-        labels=labels,
-        values=sizes,
-        marker=dict(colors=colors),
-        textinfo='percent',
-        textfont=dict(size=20, family='Arial', weight='bold')  # Show both percentage and label
-    )])
-    
-    fig.update_layout(
-        width=400,  # Set the width of the pie chart (adjust as needed)
-        height=400  # Set the height of the pie chart (adjust as needed)
-    )
-    
     st.plotly_chart(fig)
 

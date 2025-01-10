@@ -90,10 +90,10 @@ def make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_d
         projection=go.layout.geo.Projection(type='albers usa')
     )
     # Update the title dynamically
-    # title_suffix = "All Days" if selected_date == "All Days" else f"on {selected_date}"
+    title_suffix = "All Days" if selected_date == "All Days" else f"on {selected_date}"
     fig.update_layout(
-        # title_text=f"USA Map for {input_color.replace('_', ' ').title()} {title_suffix}",
-        # title_x=0.3,
+        title_text=f"USA Map for {input_color.replace('_', ' ').title()} {title_suffix}",
+        title_x=0.3,
         
         geo_scope='usa',
         width=800,

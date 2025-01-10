@@ -27,14 +27,24 @@ def load_data(url):
 merged_df = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/usa_tweet.csv')
 sentiment_distribution = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/sentiment_distribution.csv')
 user = load_data('https://raw.githubusercontent.com/Luay-alhammada/2020-election-tweet-dashboard/refs/heads/main/usa_user.csv')
-data_infro = load_data('Data Info.csv')
+data_info = load_data('https://github.com/Luay-alhammada/2020-election-tweet-dashboard/blob/main/Data%20Info.csv')
 
-col1, col2 = st.columns([1, 6]) 
+# Center-align the title using HTML
+title = "<h1 style='text-align:center;'>US Election 2020 Biden VS Trump</h1>"
+
+# Display the title in Streamlit
+st.markdown(title, unsafe_allow_html=True)
+
+# Calculate metrics
+# Sidebar for date selection
+
+
+col1, col2,col3 = st.columns([1, 5,2]) 
 # Add "All Days" to the unique dates list
 
 
 with col1:
-  st.header("US Map Configuration")
+  st.header("Map Configuration")
 # Dropdown for date selection outside the sidebar
   date_options = ["All Days"] + list(merged_df['date'].unique())
   selected_date = st.selectbox("Select Date", date_options)
@@ -93,10 +103,11 @@ def make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_d
     fig.update_layout(
         title_text=f"USA Map for {input_color.replace('_', ' ').title()} {title_suffix}",
         title_x=0.3,
+        
         geo_scope='usa',
         width=800,
         height=600,
-        margin={"r": 0, "t": 50, "l": 0, "b": 0}
+        margin={"r": 0, "t": 50, "l": 0, "b": 22}
     )
 
     return fig
@@ -106,6 +117,13 @@ def make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_d
 with col2:
     fig = make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_date)
     st.plotly_chart(fig, use_container_width=True)
+
+with col3:
+       
+    st.header("Dataset Summary")
+    html_table = data_info.to_html(index=False, border=0)
+    # Display the HTML table
+    st.markdown(html_table, unsafe_allow_html=True)
 
 #2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
 # Load data

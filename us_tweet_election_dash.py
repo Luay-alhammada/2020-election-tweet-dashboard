@@ -32,7 +32,7 @@ data_info = pd.read_csv('https://raw.githubusercontent.com/Luay-alhammada/2020-e
 title = "<h1 style='text-align:center;'>US Election 2020 Biden VS Trump</h1>"
 
 # title
-st.markdown(title, unsafe_allow_html=True)
+st.markdown('<h1 style="color: IndianRed;">Map Configuration</h1>', unsafe_allow_html=True)
 
 col1, col2,col3 = st.columns([1.5, 5, 2]) 
 #  unique dates list

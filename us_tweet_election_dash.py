@@ -126,8 +126,6 @@ with col3:
     st.markdown(html_table, unsafe_allow_html=True)
 
 #2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
-# Load data
-
 # Sidebar: Candidate Selection
 # Multi-select for candidates
 st.markdown("### Select Candidates")
@@ -152,11 +150,9 @@ else:
     wordcloud = None
 
 # Add custom CSS for layout and styling
+# Add custom CSS for layout and styling
 st.markdown("""
     <style>
-        .stColumn {
-            padding-right: 20px;
-        }
         .center-text {
             display: flex;
             justify-content: center;
@@ -171,55 +167,50 @@ st.markdown("""
 col1, col2, col3 = st.columns([1, 1.5, 1])
 
 # Word Cloud Visualization
-if wordcloud:
-    fig, ax = plt.subplots()
-    ax.imshow(wordcloud, interpolation='bilinear')
-    ax.axis('off')
-    fig.tight_layout()
-    with col1:
+with col1:
+    if wordcloud:
         st.markdown('<div class="center-text"><h3>Top Topics</h3></div>', unsafe_allow_html=True)
+        fig, ax = plt.subplots()
+        ax.imshow(wordcloud, interpolation='bilinear')
+        ax.axis('off')
+        fig.tight_layout()
         st.pyplot(fig)
-else:
+    else:
+        st.markdown('<div class="center-text"><h3>No Data for Word Cloud</h3></div>', unsafe_allow_html=True)
 
-
-    
-    with col1:
-        st.markdown('<div class="center-text"><h43>No Data for Word Cloud</h3></div>', unsafe_allow_html=True)
 # Pie Chart Visualization
-pie_chart = px.pie(
-    filtered_df,
-    names='sentiment category',
-    values='tweet_count',
-    color='sentiment category',  # Map colors based on sentiment category
-    color_discrete_map={
-        'positive': 'darkgreen',
-        'negative': 'crimson',
-        'neutral': 'snow'
-    }
-)
-pie_chart.update_layout(
-    height=400
-)
-
 with col2:
     st.markdown('<div class="center-text"><h3>Sentiment Distribution</h3></div>', unsafe_allow_html=True)
+    pie_chart = px.pie(
+        filtered_df,
+        names='sentiment category',
+        values='tweet_count',
+        color='sentiment category',
+        color_discrete_map={
+            'positive': 'darkgreen',
+            'negative': 'crimson',
+            'neutral': 'snow'
+        }
+    )
+    pie_chart.update_layout(height=400)
     st.plotly_chart(pie_chart, use_container_width=True)
+
 # Bar Chart Visualization
-bar_chart = px.bar(
-    filtered_df,
-    x='sentiment category',
-    y=['likes', 'retweet_count', 'tweet_count'],
-    barmode='group',
-    color_discrete_sequence=['#4169E1', '#1E90FF', '#87CEEB']
-)
-bar_chart.update_layout(
-    height=400,
-    xaxis_title="Sentiment Category",
-    yaxis_title="Counts",
-    legend_title="Metrics"
-)
 with col3:
-    st.markdown('<div class="center-text"><h4>Engagement Metrics</h4></div>', unsafe_allow_html=True)
+    st.markdown('<div class="center-text"><h3>Engagement Metrics</h3></div>', unsafe_allow_html=True)
+    bar_chart = px.bar(
+        filtered_df,
+        x='sentiment category',
+        y=['likes', 'retweet_count', 'tweet_count'],
+        barmode='group',
+        color_discrete_sequence=['#4169E1', '#1E90FF', '#87CEEB']
+    )
+    bar_chart.update_layout(
+        height=400,
+        xaxis_title="Sentiment Category",
+        yaxis_title="Counts",
+        legend_title="Metrics"
+    )
     st.plotly_chart(bar_chart, use_container_width=True)
 
 

@@ -172,7 +172,8 @@ with col1:
 
 # Pie Chart Visualization
 with col2:
-    st.markdown('<div class="center-text"><h3>Sentiment Distribution</h3></div>', unsafe_allow_html=True)
+    st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Sentiment Distribution</h1>', unsafe_allow_html=True)
+    # st.markdown('<div class="center-text"><h3>Sentiment Distribution</h3></div>', unsafe_allow_html=True)
     pie_chart = px.pie(
         filtered_df,
         names='sentiment category',
@@ -189,7 +190,8 @@ with col2:
 
 # Bar Chart Visualization
 with col3:
-    st.markdown('<div class="center-text"><h3>Engagement Metrics</h3></div>', unsafe_allow_html=True)
+    st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Engagement Metrics</h1>', unsafe_allow_html=True)
+    # st.markdown('<div class="center-text"><h3>Engagement Metrics</h3></div>', unsafe_allow_html=True)
     bar_chart = px.bar(
         filtered_df,
         x='sentiment category',
@@ -235,7 +237,8 @@ transition_matrix_percentage_filtered = transition_matrix_filtered.div(transitio
 col1, col2,col3 = st.columns([4, 1,1])
 
 with col1:
-    st.markdown('<div><h4>Users Sentiment Transitions Before & After Debate Day</h4></div>', unsafe_allow_html=True)
+    st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Users Sentiment Transitions Before & After Debate Day</h1>', unsafe_allow_html=True)
+    # st.markdown('<div><h4>Users Sentiment Transitions Before & After Debate Day</h4></div>', unsafe_allow_html=True)
     
     # Prepare data for the Sankey diagram with the filtered data
     source = [

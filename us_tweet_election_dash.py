@@ -172,7 +172,7 @@ with col1:
 
 # Pie Chart Visualization
 with col2:
-    st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Sentiment Distribution</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 style="color: IndianRed;font-size: 30px;  text-align: center;">Sentiment Distribution</h1>', unsafe_allow_html=True)
     # st.markdown('<div class="center-text"><h3>Sentiment Distribution</h3></div>', unsafe_allow_html=True)
     pie_chart = px.pie(
         filtered_df,
@@ -190,7 +190,7 @@ with col2:
 
 # Bar Chart Visualization
 with col3:
-    st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Engagement Metrics</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 style="color: IndianRed;font-size: 30px;  text-align: center;">Engagement Metrics</h1>', unsafe_allow_html=True)
     # st.markdown('<div class="center-text"><h3>Engagement Metrics</h3></div>', unsafe_allow_html=True)
     bar_chart = px.bar(
         filtered_df,

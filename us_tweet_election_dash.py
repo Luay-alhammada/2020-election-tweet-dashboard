@@ -160,7 +160,8 @@ col1, col2, col3 = st.columns([1, 1.5, 1])
 # Word Cloud Visualization
 with col1:
     if wordcloud:
-        st.markdown('<div class="center-text"><h3>Top Topics</h3></div>', unsafe_allow_html=True)
+        st.markdown('<h1 style="color: IndianRed;font-size: 30px;">Top Topics</h1>', unsafe_allow_html=True)
+        # st.markdown('<div class="center-text"><h3>Top Topics</h3></div>', unsafe_allow_html=True)
         fig, ax = plt.subplots()
         ax.imshow(wordcloud, interpolation='bilinear')
         ax.axis('off')

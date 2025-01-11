@@ -99,8 +99,8 @@ def make_usa_map(filtered_data, input_color, color_scale, domain_mid, selected_d
         # title_x=0.3,
         
         geo_scope='usa',
-        width=700,
-        height=600,
+        width=600,
+        height=500,
         margin={"r": 0, "t": 50, "l": 0, "b": 22}
     )
 
